@@ -13,7 +13,9 @@ class Reindeer:
     score: int = 0
 
     def __init__(self, line):
+        # Rudolph can fly 22 km/s for 8 seconds, but then must rest for 165 seconds.
         words = line.strip().split(' ')
+
         self.name = words[0]
         self.speed = int(words[3])
         self.fly_time = int(words[6])
