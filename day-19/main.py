@@ -11,4 +11,15 @@ for old, new in data:
         tmp = old.join(options[:i+1]) + new + old.join(options[i + 1:])
         results.add(tmp)
 
-print(len(results))
+x1 = len(results)
+
+final2 = final + ''
+x2 = 0
+for i in range(10):
+    for old, new in data:
+        while new in final2:
+            x2 += 1
+            final2 = final2.replace(new, old, 1)
+
+print(x1)
+print(x2)
