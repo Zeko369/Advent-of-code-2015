@@ -32,18 +32,25 @@ data = [Ingredient(line) for line in lines]
 x1 = 0
 x2 = 0
 
-for perm in itertools.permutations(range(100), len(data)):
-    if sum(perm) == 100:
-        score = 1
+# Make it work with permutations (this only works for real input)
+# for perm in itertools.permutations(range(100 + len(data) - 1), len(data)):
+for i in range(101):
+    for j in range(101):
+        for k in range(101):
+            for o in range(101):
+                perm = [i, j, k, o]
+                if sum(perm) == 100:
+                    score = 1
 
-        for key in Ingredient.PART_A_KEYS:
-            all_items = [getattr(data[i], key) * perm[i]
-                         for i in range(len(data))]
-            score *= max(0, sum(all_items))
+                    for key in Ingredient.PART_A_KEYS:
+                        all_items = [getattr(data[i], key) * perm[i]
+                                     for i in range(len(data))]
+                        score *= max(0, sum(all_items))
 
-        x1 = max(x1, score)
-        if sum([data[i].calories * perm[i] for i in range(len(data))]) == 500:
-            x2 = max(x2, score)
+                    x1 = max(x1, score)
+                    if sum([data[i].calories * perm[i] for i in range(len(data))]) == 500:
+                        x2 = max(x2, score)
+
 
 print(x1)
 print(x2)  # 11162880 < x < 13882464
